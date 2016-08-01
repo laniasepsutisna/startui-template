@@ -1,0 +1,166 @@
+//= template/head.html
+
+	<link rel="stylesheet" href="css/lib/clockpicker/bootstrap-clockpicker.min.css">
+
+//= template/head-end.html
+<body class="with-side-menu">
+
+	//= template/header.html
+
+	//= template/side-menu.html
+
+	<div class="page-content">
+		<div class="container-fluid">
+			<header class="section-header">
+				<div class="tbl">
+					<div class="tbl-row">
+						<div class="tbl-cell">
+							<h3>Datepicker</h3>
+							<ol class="breadcrumb breadcrumb-simple">
+								<li><a href="#">StartUI</a></li>
+								<li><a href="#">Forms</a></li>
+								<li class="active">Datepicker</li>
+							</ol>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<section class="card">
+				<div class="card-block">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<div class='input-group date datetimepicker-1'>
+									<input type='text' class="form-control" />
+								<span class="input-group-addon">
+									<i class="font-icon font-icon-calend"></i>
+								</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<div class='input-group date datetimepicker-2'>
+									<input type='text' class="form-control" />
+								<span class="input-group-addon">
+									<i class="font-icon font-icon-clock"></i>
+								</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<div class='input-group date datetimepicker-1'>
+									<input type='text' class="form-control" />
+								<span class="input-group-addon">
+									<i class="font-icon font-icon-calend"></i>
+								</span>
+								</div>
+							</div>
+						</div>
+					</div><!--.row-->
+
+					<div class="row m-t-lg">
+						<div class="col-md-4">
+							<div class="form-group">
+								<div class="input-group clockpicker" data-autoclose="true">
+									<input type="text" class="form-control" value="09:32">
+							<span class="input-group-addon">
+								<span class="glyphicon glyphicon-time"></span>
+							</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<input type="text" class="form-control clockpicker" value="09:32">
+							</div>
+						</div>
+					</div>
+
+					<h5>Daterangepicker</h5>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="form-group">
+								<div class='input-group date'>
+									<input id="daterange" type="text" value="01/01/2015 1:30 PM - 01/01/2015 2:00 PM" class="form-control">
+									<span class="input-group-addon">
+										<i class="font-icon font-icon-calend"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<div class='input-group date'>
+									<input id="daterange2" type="text" value="01/01/2015 - 01/31/2015" class="form-control">
+									<span class="input-group-addon">
+										<i class="font-icon font-icon-calend"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="form-group">
+								<div class='input-group date'>
+									<input id="daterange3" type="text" value="10/24/1984" class="form-control">
+									<span class="input-group-addon">
+										<i class="font-icon font-icon-calend"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div><!--.row-->
+				</div>
+			</section>
+		</div><!--.container-fluid-->
+	</div><!--.page-content-->
+
+	//= template/footer.html
+
+	<script src="js/lib/clockpicker/bootstrap-clockpicker.min.js"></script>
+	<script src="js/lib/clockpicker/bootstrap-clockpicker-init.js"></script>
+	<script src="js/lib/daterangepicker/daterangepicker.js"></script>
+	<script src="js/lib/bootstrap-select/bootstrap-select.min.js"></script>
+	<script>
+		$(function() {
+			function cb(start, end) {
+				$('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+			}
+			cb(moment().subtract(29, 'days'), moment());
+
+			$('#daterange').daterangepicker({
+				"timePicker": true,
+				ranges: {
+					'Today': [moment(), moment()],
+					'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+					'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+					'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+					'This Month': [moment().startOf('month'), moment().endOf('month')],
+					'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+				},
+				"linkedCalendars": false,
+				"autoUpdateInput": false,
+				"alwaysShowCalendars": true,
+				"showWeekNumbers": true,
+				"showDropdowns": true,
+				"showISOWeekNumbers": true
+			});
+
+			$('#daterange2').daterangepicker();
+
+			$('#daterange3').daterangepicker({
+				singleDatePicker: true,
+				showDropdowns: true
+			});
+
+			$('#daterange').on('show.daterangepicker', function(ev, picker) {
+				/*$('.daterangepicker select').selectpicker({
+					size: 10
+				});*/
+			});
+		});
+	</script>
+
+//= template/foot.html
